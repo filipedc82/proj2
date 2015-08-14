@@ -39,6 +39,5 @@ class AliasAddView(generic.CreateView):
         return "/products/{0}/".format(self.kwargs['product'])
 
     def form_valid(self, form):
-        print('HOHOHO')
         messages.info(self.request, self.success_msg, 'alert-success' )
         return super(AliasAddView, self).form_valid(form)

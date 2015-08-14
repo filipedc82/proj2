@@ -39,14 +39,18 @@ def createTestAlias(product = "", product_no = ""):
     pa.save()
     return pa
 
-def createTestDrawing(product_alias = ""):
+def createTestDrawing(product = "", drawing_no = ""):
     d = pmodels.Drawing()
-    if product_alias == "":
-        d.product_alias = createTestAlias()
+    if product == "":
+        d.product = createTestProduct()
     else:
-        d.product_alias = product_alias
+        d.product = product
 
-    d.drawing_no = "Drwg" + str(pmodels.Drawing.objects.count())
+    if drawing_no == "":
+        d.drawing_no = "Drwg" + str(pmodels.Drawing.objects.count())
+    else:
+        d.drawing_no = drawing_no
+
     d.status = "A"
     d.save()
     return d
