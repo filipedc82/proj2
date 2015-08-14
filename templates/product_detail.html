@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block  title_text%} Product Details {{object.product_no}}{% endblock %}
+{% block  header_text%} Product Details {% endblock %}
+
+{% block  page_content%}
+    <a id="id_product_list_link" href="/products/">Back to Product List</a><br/>
+
+    <table class="table" id="id_product_detail_table">
+        {% for key,value in object_dict.items %}<tr><td>{{ key }} : </td><td>{{ value }}</td></tr> {% endfor %}
+
+    </table>
+    </br>
+    <a id="add_alias_link" href= {{ object.get_absolute_url}}add_alias/>Add Alias</a><br/>
+    <table class="table" id="id_product_detail_table">
+        <tr>
+                <th>Vendor</th>
+                <th>Product No</th>
+                <th>Description</th>
+        </tr>
+
+        {% for alias in object.productalias_set.all %}<tr><td>{{ alias.vendor }} : </td><td>{{ alias.product_no }}</td> <td>{{ alias.description }}</td></tr> {% endfor %}
+
+    </table>
+
+
+
+{% endblock %}

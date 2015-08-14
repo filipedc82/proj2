@@ -47,9 +47,33 @@ class ProductsTest(StaticLiveServerTestCase):
 
         # In the list he sees one entry with a standard two alias
         body_text = self.browser.find_element_by_tag_name('body').text
-        self.assertIn(p1.standard_alias.product_no, body_text)
+        self.assertIn(p1.product_no, body_text)
         self.assertIn(a1.product_no, body_text)
         self.assertIn(a2.product_no, body_text)
+
+        # He finds the link to create a new Product and  clicks it
+        self.browser.find_element_by_id("add_product_link").click()
+        # He is then shown a forms page and enters a Product No and clicks submit
+        self.assertIn('Add new Product', self.browser.title)
+        self.browser.find_element_by_id('id_product_no').send_keys("AnotherGuide")
+        self.browser.find_element_by_id('submit-id-save').click()
+
+        # He is then shown the product entry page
+        self.assertIn('Product Details', self.browser.title)
+        self.assertIn("AnotherGuide", self.browser.find_element_by_tag_name('body').text)
+
+        # In the product detail page he sees a "add Alias" link and clicks it
+        self.browser.find_element_by_id("add_alias_link").click()
+
+        # He is shown a alias form page
+        self.assertIn("Add Alias", self.browser.title)
+
+
+        # In the detail page he clicks the "edit" link
+
+
+
+
 
 
 

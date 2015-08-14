@@ -4,7 +4,7 @@
 {% block  header_text%} Product List {% endblock %}
 
 {% block  page_content%}
-        <a id="create_product_link" href="/products/add">Create new Product</a>
+        <a id="add_product_link" href="/products/add">Create new Product</a>
         <br/>
         <table id="id_product_table" class="table">
             <tr>
@@ -12,17 +12,19 @@
                 <th>Product No</th>
                 <th>OEM / Engine</th>
                 <th>Aliases</th>
+                <th>Description</th>
             </tr>
              {% for product in object_list %}
                  <tr>
                     <td> {{ product.product_group}}</td>
-                    <td> {{ product.standard_alias.product_no }}</td>
+                    <td> <a href={{ product.get_absolute_url }}>{{ product.product_no }}</a></td>
                     <td> {{ product.oem }} {{ product.engine }}</td>
                     <td>
                          {% for alias in product.productalias_set.all %}
                             {{ alias.product_no }}
                          {% endfor %}
                     </td>
+                    <td> {{ product.description }}</td>
                 </tr>
              {% endfor %}
 

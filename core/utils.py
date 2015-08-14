@@ -1,6 +1,6 @@
 from products import models as pmodels
 
-def createTestProduct(standard_alias_no=""):
+def createTestProduct(product_no = ""):
     """
     Create a Test Product with
     :param product_no:
@@ -8,13 +8,17 @@ def createTestProduct(standard_alias_no=""):
     """
 
     p = pmodels.Product()
-    p.save()
-    if standard_alias_no == "":
-        pa = createTestAlias(p, "Guide"+str(p.id)+"std")
+    if product_no == "":
+       p.product_no = "Guide" + str(pmodels.Product.objects.count())
     else:
-        pa= createTestAlias(p, standard_alias_no)
-
-    p.standard_alias = pa
+        p.product_no = product_no
+    p.save()
+    # if standard_alias_no == "":
+    #     pa = createTestAlias(p, "Guide"+str(p.id)+"std")
+    # else:
+    #     pa= createTestAlias(p, standard_alias_no)
+    #
+    # p.standard_alias = pa
     p.product_group = "VG"
     p.oem = "MAK"
     p.engine = "M32"

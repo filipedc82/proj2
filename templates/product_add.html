@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block  title_text%} Add new Product{% endblock %}
+{% block  header_text%} Add new Product{% endblock %}
+
+{% block  page_content%}
+
+    {% crispy form %}
+
+    {{ inlines.management_form|crispy }}
+    {% for inline in inlines %}
+        {%  crispy inline %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,2 @@
+
+TODO: create messages system using django.contrib.messages, and find out how to display nicely in bootstrap. First message try in AddAlias View
